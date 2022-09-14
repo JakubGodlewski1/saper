@@ -20,3 +20,7 @@
 .clicked{
     background: rgb(241, 202, 0);;
 }
+
+.flagged{
+    background: red;
+}

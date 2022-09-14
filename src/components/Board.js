@@ -56,6 +56,23 @@ const Board = ({board, updateBoard}) => {
         return updatedBoard
     }
 
+
+    //handle flagging elements
+    const handleRightClick = (e, el) => {
+        e.preventDefault()
+        const updatedBoard = board.map((element)=>{
+            if (el.id===element.id){
+                if (element.flagged){
+                    return {...element, flagged: false}
+                } else if (!element.flagged){
+                    return {...element, flagged: true}
+                }
+            }else return element
+        })
+        updateBoard(updatedBoard)
+    }
+
+
     const handleElementClick = (el) => {
         let updatedBoard;
         let firstClick = true
@@ -91,7 +108,6 @@ const Board = ({board, updateBoard}) => {
 
 
         //update main board
-        console.log(updatedBoard)
         updateBoard(updatedBoard)
 
     }
@@ -100,7 +116,10 @@ const Board = ({board, updateBoard}) => {
     return (
         <div className="board">
             {board.map((element)=>(
-                <div onClick={()=>handleElementClick(element)} className={`element ${element.clicked ? "clicked" : ""}`} key={element.id}>
+                <div onContextMenu={(e)=>handleRightClick(e, element)}
+                     onClick={()=>handleElementClick(element)}
+                     className={`element ${element.clicked ? "clicked" : ""} ${element.flagged ? "flagged" : ""}`}
+                     key={element.id}>
                     {element.clicked && !element.mine && element.number !== 0 && element.number}
                 </div>
             ))}
