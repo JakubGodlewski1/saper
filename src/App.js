@@ -1,11 +1,16 @@
 import './App.css';
 import {useCheckAround} from "./hooks/useCheckAround";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Board from "./components/Board";
 
 function App() {
   const [checkAround] = useCheckAround()
   const [board, setBoard] = useState([])
 
+
+  useEffect(()=>{
+    initializeGame()
+  },[])
 
 
   const initializeGame = () => {
@@ -47,11 +52,11 @@ function App() {
    return boardWithNumbers
   }
 
-  initializeGame()
+
 
   return (
     <div className="App">
-
+      {board.length > 0 && <Board board={board}/>}
     </div>
   );
 }
