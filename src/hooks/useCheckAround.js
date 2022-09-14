@@ -47,7 +47,7 @@ export const useCheckAround = () => {
 
         //right
         else if ((elementId + 1) % 10 === 0){
-            elementsAround.push(board[elementId-9], board[elementId-10], board[elementId-1], board[elementId+9], board[elementId+10])
+            elementsAround.push(board[elementId-11], board[elementId-10], board[elementId-1], board[elementId+9], board[elementId+10])
         }
 
         //everything else
