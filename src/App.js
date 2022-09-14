@@ -2,10 +2,12 @@ import './App.css';
 import {useCheckAround} from "./hooks/useCheckAround";
 import {useEffect, useState} from "react";
 import Board from "./components/Board";
+import Popup from "./components/Popup";
 
 function App() {
   const [checkAround] = useCheckAround()
   const [board, setBoard] = useState([])
+  const [gameStatus, setGameStatus] = useState(null)
 
 
   useEffect(()=>{
@@ -13,6 +15,13 @@ function App() {
   },[])
 
 
+    //function that allows to update game status
+  const updateGameStatus = (gameStatus) =>{
+    setGameStatus(gameStatus)
+  }
+
+
+    //function that allows to update board
   const updateBoard = (updatedBoard)=>{
     setBoard(updatedBoard)
   }
@@ -63,7 +72,8 @@ function App() {
 
   return (
     <div className="App">
-      {board.length > 0 && <Board updateBoard={updateBoard} board={board}/>}
+      {gameStatus && <Popup gameStatus={gameStatus}/>}
+      {board.length > 0 && <Board updateGameStatus={updateGameStatus} updateBoard={updateBoard} board={board}/>}
     </div>
   );
 }

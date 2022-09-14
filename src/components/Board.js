@@ -1,7 +1,7 @@
 import "./Board.css"
 import {useCheckAround} from "../hooks/useCheckAround";
 
-const Board = ({board, updateBoard}) => {
+const Board = ({board, updateBoard, updateGameStatus}) => {
     const [checkAround] = useCheckAround()
 
 
@@ -99,7 +99,7 @@ const Board = ({board, updateBoard}) => {
             // if not first click
         }else {
             if (el.mine){
-                //INSERT FUNCTION - game lost
+                updateGameStatus("LOST")
             }else if (el.number === 0){
                 let updatedBoardWithZeros = handleZeroClick(el.id)
                 updatedBoard = updatedBoardWithZeros
