@@ -13,6 +13,11 @@ function App() {
   },[])
 
 
+  const updateBoard = (updatedBoard)=>{
+    setBoard(updatedBoard)
+  }
+
+
   const initializeGame = () => {
     //create 10 mines - 10 random numbers between 0 and 99. Later we will place them into the board
     const mines = []
@@ -45,7 +50,9 @@ function App() {
           numberOfMinesAround++
         }
       })
-      return {...element, number: numberOfMinesAround}
+      if (!element.mine){
+        return {...element, number: numberOfMinesAround}
+      } else return element
     })
 
    setBoard(boardWithNumbers)
@@ -56,7 +63,7 @@ function App() {
 
   return (
     <div className="App">
-      {board.length > 0 && <Board board={board}/>}
+      {board.length > 0 && <Board updateBoard={updateBoard} board={board}/>}
     </div>
   );
 }
