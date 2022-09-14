@@ -9,4 +9,5 @@
     height: 50px;
     background: rgba(40, 180, 133, 0.8);
     border: 1px solid black;
+    cursor: pointer;
 }
