@@ -28,6 +28,7 @@ function App() {
 
 
   const initializeGame = () => {
+
     //create 10 mines - 10 random numbers between 0 and 99. Later we will place them into the board
     const mines = []
     while (mines.length < 10){
@@ -72,8 +73,8 @@ function App() {
 
   return (
     <div className="App">
-      {gameStatus && <Popup gameStatus={gameStatus}/>}
-      {board.length > 0 && <Board updateGameStatus={updateGameStatus} updateBoard={updateBoard} board={board}/>}
+      {gameStatus && <Popup updateGameStatus={updateGameStatus} initializeGame={initializeGame} gameStatus={gameStatus}/>}
+      {board.length > 0 && <Board initializeGame={initializeGame} updateGameStatus={updateGameStatus} updateBoard={updateBoard} board={board}/>}
     </div>
   );
 }

@@ -1,11 +1,15 @@
 import "./Popup.css"
 
-const Popup = ({gameStatus}) => {
+const Popup = ({gameStatus, initializeGame, updateGameStatus}) => {
+    const handleNewGame = ()=> {
+        initializeGame()
+        updateGameStatus(null)
+    }
+
     return (
         <div className="popup">
             <p>YOU {gameStatus}</p>
-            <button className="btn
-            ">Play again</button>
+            <button onClick={handleNewGame} className="btn">Play again</button>
         </div>
     );
 };
